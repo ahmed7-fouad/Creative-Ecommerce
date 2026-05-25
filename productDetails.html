@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/style/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/style/all.min.css">
+    <link rel="stylesheet" href="/all.min.css">
+    <link rel="stylesheet" href="src/style/style.css">
+    <title>Product Details</title>
+</head>
+<body>
+
+    <!-- Api Request MSG Response -->
+     <div class="responseMsgAlert alert alert-danger fixed! z-1000 left-5 bottom-0 w-50 z-5000 duration-500" role="alert" style="opacity:0;transform:translateY(10rem)">
+        A simple primary alert—check it out!
+    </div>
+    <!--//=== Api Request MSG Response ===//-->
+
+     <!-- Register Modal -->
+      
+      <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade registerModal" id="registerModal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="overlay fixed w-screen h-screen bg-[#00000082]"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 capitalize"  id="staticBackdropLabel">register page</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="register-modal-body modal-body space-y-2">
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter first name (Optional)</label>
+                        <input id="firstName" type="text" class="border-3 w-full p-1" name="firstName" autocomplete="firstName">
+                    </section>
+                    
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter last name (Optional)</label>
+                        <input  type="text" class="border-3 w-full p-1" name="lastName" autocomplete="lastName">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter username</label>
+                        <input type="text" class="border-3 w-full p-1" name="userName" autocomplete="userName">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter email</label>
+                        <input type="email" class="border-3 w-full p-1" name="email" autocomplete="email">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >password</label>
+                        <input type="password" class="border-3 w-full p-1" name="password" autocomplete="password">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >upload image (Optional)</label>
+                        <input type="file" class="border-3 w-full p-1" name="profileImage" autocomplete="profileImage">
+                    </section>
+                    <section>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary hover:bg-secondaryPar/70!" data-bs-dismiss="modal">Close</button>
+                    <button id="registerRequestBtn" type="button" class="btn bg-main! text-white! hover:bg-main-hover!">Register</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    <!--//=== Register Modal ===//-->
+
+
+    <!-- Login Modal -->
+
+         <!-- Modal -->
+        <div class="modal fade loginModal" id="loginModal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="overlay fixed w-screen h-screen bg-[#00000082]"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 capitalize" id="staticBackdropLabel">login page</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="login-modal-body modal-body space-y-2">
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter username</label>
+                        <input type="text" class="border-3 w-full p-1" name="userName" autocomplete="userName">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >password</label>
+                        <input type="password" class="border-3 w-full p-1" name="password" autocomplete="password">
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary hover:bg-secondaryPar/70!" data-bs-dismiss="modal">Close</button>
+                    <button id="loginRequestBtn" type="button" class="btn bg-main! text-white! hover:bg-main-hover!">Login</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    <!--//=== Login Modal ===//-->
+
+      <!-- Nav Bar -->
+      <nav class="position-sticky top-0 z-500 bg-white">
+        <!-- Nav First Raw -->
+        <section class="nav-first-row secContainer  flex items-center justify-content-between min-h-20 ">
+             <!-- Logo -->
+             <section class="w-31 ">
+                <a href="/">
+                    <img src="/public/images/mainLogo.png" alt="Logo" class="w-full h-full">
+                </a>
+             </section>
+            <!--// Logo //-->
+
+            
+            <!-- Search Bar -->
+                <div class="input-group hidden! lg:flex! h-13 max-w-110 bg-main ">
+                    <button type="button" class="btn hover:bg-soft capitalize text-soft!">all categories</button>
+                    <button type="button" class="btn  dropdown-toggle dropdown-toggle-split text-soft!" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden ">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu text-soft">
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Electronic</a></li>
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Fashion</a></li>
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Phones & Tablets</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Toys & Hobbies</a></li>
+                    </ul>
+                    <input type="search" class="form-control relative" aria-label="Search Bar" name="search">
+                    <section class="search-icon h-13 w-13 flex items-center justify-center cursor-pointer text-soft">
+                        <i class="fa-regular fa-magnifying-glass"></i>
+                    </section>
+                </div>
+            <!--//=== Search Bar ===//-->
+
+            <!-- Nav Cart Icons -->
+             <section class="flex items-center gap-4
+              fs-3 h-13 cursor-pointer">
+                <section class="wishListMainBtn relative">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="favIconCounter
+                    absolute w-5 h-5 bg-main rounded-full -right-3 -top-1
+                    flex items-center justify-center text-soft text-[0.9rem]
+                    ">
+                    0
+                </span>
+                </section>
+                <section  class="navCartBtn cartIcon cursor-pointer relative">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="navCartIconCounter" class="
+                      absolute w-5 h-5 bg-main rounded-full -right-3 -top-1
+                      flex items-center justify-center text-soft text-[0.9rem]
+                    ">
+                    0
+                </span>
+                </section>
+             </section>
+            <!--//=== Nav Cart Icons ===//-->
+
+        </section>
+        <!--//===  Nav First Raw  ===//-->
+
+        
+        <!-- sideBarCart -->
+         <aside  class="
+         px-4 py-5 z-3000 
+         h-screen w-[300px] 
+         fixed right-0 top-0
+          bg-white shadow-lg
+           translate-x-[300px] 
+           transition-transform 
+           duration-300
+           sideBarCartBox
+           ">
+            <header class="flex items-center justify-between">
+                <h4 class="capitalize font-semibold">cart items : <span id="cartItemsNum">0</span></h4>
+                <span ><i class="text-2xl exitBtn cursor-pointer fa-regular fa-circle-xmark"></i></span>
+            </header>
+
+            <section id="sideBarCartItems" class="h-[70vh] overflow-y-scroll">
+
+ 
+            </section>
+
+             <!-- Checkout Btns Group -->
+                 <section class="absolute bottom-0 left-[50%] px-4 pt-1 pb-4 w-full -translate-x-[50%]">
+                    <section class="flex items-center justify-between">
+                        <p class="capitalize text-xl font-semibold">subtotal</p>
+                        <p id="sideCartTotalPrice" class="text-main font-semibold ">$<span>0</span></p>
+                    </section>
+                    <section>
+                        <button  type="button" class="btn  sidecartCheckoutBtn uppercase! rounded-0 bg-main! text-soft! border-main! hover:text-black! hover:bg-orange-400! px-3 text-md! duration-300 font-semibold!">checkout</button>
+                        <button  type="button" class="btn  sidecartShopMoreBtn uppercase! rounded-0 bg-mainBg! text-black border-main! hover:text-main! text-md! font-semibold!">shop more</button>
+                    </section>
+                 </section>
+                <!--//=== Checkout Btns Group ===//-->
+         </aside>
+        <!--//===sideBarCart===//-->
+            <!-- Nav Second Raw -->
+             <section class="border-1 border-x-0 border-secondaryPar/30">
+                <section class="secContainer flex flex-col-reverse lg:flex-row items-center justify-center  gap-3 py-3 lg:gap-0 lg:justify-between lg:py-0! flex-wrap">
+                    <div class="dropdown hidden lg:block">
+                        <button class="btn bg-main! text-soft! font-semibold! dropdown-toggle capitalize! w-[13rem] rounded-0 h-13" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        browse category
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li><a class="dropdown-item active" href="#" class="capitalize text-secondaryPar">top 10 offers</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">electronics & digital</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">phones & tablet</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">fashion & clothings</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">telivision & monitor</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">jewelry & watches</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">toys & hobbies</a></li>   
+                        </ul>
+                    </div>
+                
+
+                <!-- Main Links -->
+                <ul class="capitalize gap-3 flex items-center mb-0">
+                    <a href="" class="text-decoration-none"><li class="text-black">home</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">about</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">accessories</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">blog</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">contact</li></a>
+                </ul>
+                <!--//=== Main Links ===//-->
+
+                <!-- Authentication btns -->
+
+                <!-- Unauthorized Section -->
+                <section class="unAuthSec flex items-center gap-4">
+                    <button class="btn bg-main! text-soft! rounded-0 w-[6rem] h-13 text-sm! lg:w-30 lg:h-13  lg:text-lg! capitalize!" data-bs-toggle="modal" data-bs-target="#loginModal">login <i class="fa-solid fa-arrow-right-to-bracket text-[0.9rem] lg:text-[1.1rem] ml-1"></i></button>
+                    <button class="btn bg-main! text-soft! rounded-0 w-[6rem] h-13 text-sm! lg:w-30 lg:h-13  lg:text-lg! capitalize!" data-bs-toggle="modal" data-bs-target="#registerModal">sign up <i class="fa-solid fa-user-plus  text-[0.9rem] lg:text-[1.1rem] ml-1"></i></button>
+                </section>
+                <!--//===  Unauthorized Section ===//-->
+                
+                <!-- Authorized Section -->
+                <section class="AuthSec  items-center gap-3 hidden">
+                    <section class="flex items-center gap-1 cursor-pointer">
+                        <section class="profileImage size-10 lg:size-11 rounded-full bg-dark cursor-pointer overflow-hidden">
+                            <img src="/public/images/banner3_1.png" alt="profileImage">
+                        </section>
+                        <span class="profileUserName font-semibold capitalize">user</span>
+                    </section>
+                    <button class="logout btn bg-main! text-soft! rounded-0 w-[6rem] h-13 text-sm! lg:w-30 lg:h-13  lg:text-lg! capitalize!">logout <i class="fa-solid fa-arrow-right-to-bracket text-[1.1rem] ml-1"></i></button>
+                 </section>
+                <!--//=== Authorized Section ===//-->
+
+
+                <!--//=== Authentication btns ===//-->
+            <!--//===  Nav Second Raw  ===//-->
+        </section>
+      </section>
+    </nav>
+    <!--//=== Nav Bar ===//-->
+
+
+    <section class="productDetails py-5">
+        <section class="secContainer product-details-parent flex flex-col lg:flex-row  items-center justify-center gap-3">
+           
+        </section>
+    </section>
+
+
+
+
+           <!-- Mobiles Cards -->
+
+        <section class="sunglasses">
+             <section class="secContainer py-3"> 
+                <section class="flex items-end justify-between">
+                    <section class="secTitle  uppercase py-2 
+                    px-[2rem] text-xl bg-main text-soft 
+                    w-fit font-semibold relative
+                    rounded-tl-2xl before:content-[''] before:absolute 
+                    before:size-5 before:bg-amber-500 before:left-0 
+                    before:top-0 after:content-[''] after:absolute after:w-5
+                    after:h-12 after:bg-white after:rotate-45 after:-top-5
+                    after:-left-2">
+                        sunglasses
+                    </section>
+
+                    <!-- Left And Right Indicators -->
+                     <section class="flex items-center gap-3">
+                        <button type="button" class="leftIndicator bg-mainBg size-13 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </button>
+                        <button  type="button" class="rightIndicator bg-mainBg size-13 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-angle-right "></i>
+                        </button>
+                     </section>
+                    <!--//=== Left And Right Indicators ===//-->
+                </section>
+
+                <section class="h-1 bg-amber-500 shadow-xl"></section>
+                
+                <!-- ALL Cards Content-->
+                <section id="sunglassesParent" class="items-parent py-4 overflow-x-scroll whitespace-nowrap">
+
+                </section>
+                <!-- ALL Cards Content-->
+
+                <!--//=== product card ===//-->
+                </section>
+        </section>
+
+        <!--//=== Mobiles Cards ===//-->
+
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-black">
+        <section class="secContainer flex flex-col lg:flex-row items-center lg:items-start  gap-[3rem] lg:gap-[5rem]">
+            <!-- Box -->
+                <section class="flex flex-col gap-3 items-center lg:items-start">
+                    <section class="w-31 p-1 bg-soft rounded-4">   
+                        <img src="/public/images/mainLogo.png" alt="LogoImage" class="size-full">
+                    </section>
+                <p class="capitalize text-secondaryPar font-medium text-sm m-0">take your time and add to your cart what you need</p>
+                <section class="flex items-center gap-3">
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </section>
+
+                </section>
+            <!--//=== Box ===//-->
+
+        <section class="flex flex-col lg:flex-row  justify-between flex-1 gap-3 lg:gap-5">
+
+            <!-- Box --> 
+
+            <section>
+                <h4 class="capitalize text-white font-semibold mb-3">find in fast</h4>
+                <ul class="footer-links list-unstyled">
+                    <a href="" class="capitalize text-white font-extralight text-decoration-none block mb-2 flex items-center gap-1 text-[0.8rem]"><li>laptops & computers</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>smart phones & tablets</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>TV & audio</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>appliances</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>jewelry & watches</li></a>
+                </ul>
+            </section>
+
+            <!--//=== Box ===//-->
+
+        
+            <!-- Box --> 
+            
+            <section class="">
+                <h4 class="capitalize text-white font-semibold mb-3">quick links</h4>
+                <ul class="footer-links list-unstyled">
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>your account</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>returns & exchanges</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>shipping & delivery</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>estimated delivery time</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>purchase history</li></a>
+                </ul>
+            </section>
+
+            <!--//=== Box ===//-->
+
+            <!-- Box --> 
+
+            <section class="">
+                <h4 class="capitalize text-white font-semibold mb-3">service us</h4>
+                <ul class="footer-links list-unstyled">
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>support center</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>term & conditions</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>privacy policy</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>help</li></a>
+                    <a href="" class="uppercase text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>faqs</li></a>
+                </ul>
+            </section>
+        </section>
+            <!--//=== Box ===//-->
+        </section>
+    </footer>
+    <!--//=== Footer ===//-->
+
+
+    <script src="/node_modules/axios/dist/axios.min.js"></script>
+    <script src="/src/js/commonFunctions.js"></script>
+    <script src="/src/js/productDetails.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/all.min.css">
+    <link rel="stylesheet" href="/src/style/style.css">
+    <title>checkout</title>
+</head>
+<body>
+
+    <!-- Checkout Banner Success -->
+    <section style="opacity:0;visibility: hidden;" id="checkoutBanner"
+     class="fixed w-screen h-screen
+      top-0 left-0 bg-gray-700/50
+       z-5000 flex items-center
+       justify-center duration-300">
+        <section id="checkoutLoader" class="text-center p-[5rem] shadow-lg rounded-lg bg-light relative overflow-hidden">
+            <p class="text-6xl font-semibold text-main mb-4"><i class="fa-solid fa-circle-check"></i></p>
+            <p class="text-xl text-secondaryPar font-semibold mb-2">Your purchase was successful</p>
+            <p class="text-xl text-secondaryPar font-semibold m-0">Your products will arrive soon</p>
+            <section class="loader h-3 w-full bg-secondaryPar  absolute bottom-0 left-0">
+                <span id="loaderBody" class="block h-3 w-0 bg-main transition-all ease-linear duration-1700"></span>
+            </section>
+        </section>
+    </section>
+    <!--//=== Checkout Banner Success ===//-->
+
+    
+    <!-- Api Request MSG Response -->
+     <div class="responseMsgAlert alert alert-danger fixed!  left-5 bottom-0 w-50 z-50000 duration-500" role="alert" style="opacity:0;transform:translateY(10rem)">
+        A simple primary alert—check it out!
+    </div>
+    <!--//=== Api Request MSG Response ===//-->
+
+     <!-- Register Modal -->
+      
+      <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade registerModal" id="registerModal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="overlay fixed w-screen h-screen bg-[#00000082]"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 capitalize"  id="staticBackdropLabel">register page</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="register-modal-body modal-body space-y-2">
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter first name (Optional)</label>
+                        <input id="firstName" type="text" class="border-3 w-full p-1" name="firstName" autocomplete="firstName">
+                    </section>
+                    
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter last name (Optional)</label>
+                        <input  type="text" class="border-3 w-full p-1" name="lastName" autocomplete="lastName">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter username</label>
+                        <input type="text" class="border-3 w-full p-1" name="userName" autocomplete="userName">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter email</label>
+                        <input type="email" class="border-3 w-full p-1" name="email" autocomplete="email">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >password</label>
+                        <input type="password" class="border-3 w-full p-1" name="password" autocomplete="password">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >upload image (Optional)</label>
+                        <input type="file" class="border-3 w-full p-1" name="profileImage" autocomplete="profileImage">
+                    </section>
+                    <section>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary hover:bg-secondaryPar/70!" data-bs-dismiss="modal">Close</button>
+                    <button id="registerRequestBtn" type="button" class="btn bg-main! text-white! hover:bg-main-hover!">Register</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    <!--//=== Register Modal ===//-->
+
+
+    <!-- Login Modal -->
+
+         <!-- Modal -->
+        <div class="modal fade loginModal" id="loginModal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="overlay fixed w-screen h-screen bg-[#00000082]"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 capitalize" id="staticBackdropLabel">login page</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="login-modal-body modal-body space-y-2">
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >enter username</label>
+                        <input type="text" class="border-3 w-full p-1" name="userName" autocomplete="userName">
+                    </section>
+
+                    <section class="flex flex-col items-start gap-2">
+                        <label class="capitalize font-semibold" >password</label>
+                        <input type="password" class="border-3 w-full p-1" name="password" autocomplete="password">
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary hover:bg-secondaryPar/70!" data-bs-dismiss="modal">Close</button>
+                    <button id="loginRequestBtn" type="button" class="btn bg-main! text-white! hover:bg-main-hover!">Login</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    <!--//=== Login Modal ===//-->
+
+      <!-- Nav Bar -->
+      <nav class="position-sticky top-0 z-500 bg-white">
+        <!-- Nav First Raw -->
+        <section class="nav-first-row secContainer  flex items-center justify-content-between min-h-20 ">
+              <!-- Logo -->
+             <section class="w-31 ">
+                <a href="/">
+                    <img src="/public/images/mainLogo.png" alt="Logo" class="w-full h-full">
+                </a>
+             </section>
+            <!--// Logo //-->
+
+
+            <!-- Search Bar -->
+                <div class="input-group hidden! lg:flex! h-13 max-w-110 bg-main ">
+                    <button type="button" class="btn hover:bg-soft capitalize text-soft!">all categories</button>
+                    <button type="button" class="btn  dropdown-toggle dropdown-toggle-split text-soft!" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden ">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu text-soft">
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Electronic</a></li>
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Fashion</a></li>
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Phones & Tablets</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" class="text-secondaryPar">Toys & Hobbies</a></li>
+                    </ul>
+                    <input type="search" class="form-control relative" aria-label="Search Bar" name="search">
+                    <section class="search-icon h-13 w-13 flex items-center justify-center cursor-pointer text-soft">
+                        <i class="fa-regular fa-magnifying-glass"></i>
+                    </section>
+                </div>
+            <!--//=== Search Bar ===//-->
+
+            <!-- Nav Cart Icons -->
+             <section class="flex items-center gap-4
+              fs-3 h-13 cursor-pointer">
+                <section class="wishListMainBtn relative">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="favIconCounter
+                    absolute w-5 h-5 bg-main rounded-full -right-3 -top-1
+                    flex items-center justify-center text-soft text-[0.9rem]
+                    ">
+                    0
+                </span>
+                </section>
+                <section  class="navCartBtn cartIcon cursor-pointer relative">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="navCartIconCounter" class="
+                      absolute w-5 h-5 bg-main rounded-full -right-3 -top-1
+                      flex items-center justify-center text-soft text-[0.9rem]
+                    ">
+                    0
+                </span>
+                </section>
+             </section>
+            <!--//=== Nav Cart Icons ===//-->
+
+        </section>
+        <!--//===  Nav First Raw  ===//-->
+
+        
+        <!-- sideBarCart -->
+         <aside  class="
+         px-4 py-5 z-3000 
+         h-screen w-[300px] 
+         fixed right-0 top-0
+          bg-white shadow-lg
+           translate-x-[300px] 
+           transition-transform 
+           duration-300
+           sideBarCartBox
+           ">
+            <header class="flex items-center justify-between">
+                <h4 class="capitalize font-semibold">cart items : <span id="cartItemsNum">0</span></h4>
+                <span ><i class="text-2xl exitBtn cursor-pointer fa-regular fa-circle-xmark"></i></span>
+            </header>
+
+            <section id="sideBarCartItems" class="h-[70vh] overflow-y-scroll">
+
+ 
+            </section>
+
+             <!-- Checkout Btns Group -->
+                 <section class="absolute bottom-0 left-[50%] px-4 pt-1 pb-4 w-full -translate-x-[50%]">
+                    <section class="flex items-center justify-between">
+                        <p class="capitalize text-xl font-semibold">subtotal</p>
+                        <p id="sideCartTotalPrice" class="text-main font-semibold ">$<span>0</span></p>
+                    </section>
+                    <section>
+                        <button  type="button" class="btn  sidecartCheckoutBtn uppercase! rounded-0 bg-main! text-soft! border-main! hover:text-black! hover:bg-orange-400! px-3 text-md! duration-300 font-semibold!">checkout</button>
+                        <button  type="button" class="btn  sidecartShopMoreBtn uppercase! rounded-0 bg-mainBg! text-black border-main! hover:text-main! text-md! font-semibold!">shop more</button>
+                    </section>
+                 </section>
+                <!--//=== Checkout Btns Group ===//-->
+         </aside>
+        <!--//===sideBarCart===//-->
+            <!-- Nav Second Raw -->
+             <section class="border-1 border-x-0 border-secondaryPar/30">
+                <section class="secContainer flex flex-col-reverse lg:flex-row items-center justify-center  gap-3 py-3 lg:gap-0 lg:justify-between lg:py-0! flex-wrap">
+                    <div class="dropdown hidden lg:block">
+                        <button class="btn bg-main! text-soft! font-semibold! dropdown-toggle capitalize! w-[13rem] rounded-0 h-13" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        browse category
+                        </button>
+                        <ul class="dropdown-menu ">
+                            <li><a class="dropdown-item active" href="#" class="capitalize text-secondaryPar">top 10 offers</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">electronics & digital</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">phones & tablet</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">fashion & clothings</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">telivision & monitor</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">jewelry & watches</a></li>
+                            <li><a class="dropdown-item" href="#" class="capitalize text-secondaryPar">toys & hobbies</a></li>   
+                        </ul>
+                    </div>
+                
+
+                <!-- Main Links -->
+                <ul class="capitalize gap-3 flex items-center mb-0">
+                    <a href="" class="text-decoration-none"><li class="text-black">home</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">about</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">accessories</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">blog</li></a>
+                    <a href="" class="text-decoration-none"><li class="text-black">contact</li></a>
+                </ul>
+                <!--//=== Main Links ===//-->
+
+                <!-- Authentication btns -->
+
+                <!-- Unauthorized Section -->
+                <section class="unAuthSec flex items-center gap-4">
+                    <button class="btn bg-main! text-soft! rounded-0 w-[6rem] h-13 text-sm! lg:w-30 lg:h-13  lg:text-lg! capitalize!" data-bs-toggle="modal" data-bs-target="#loginModal">login <i class="fa-solid fa-arrow-right-to-bracket text-[0.9rem] lg:text-[1.1rem] ml-1"></i></button>
+                    <button class="btn bg-main! text-soft! rounded-0 w-[6rem] h-13 text-sm! lg:w-30 lg:h-13  lg:text-lg! capitalize!" data-bs-toggle="modal" data-bs-target="#registerModal">sign up <i class="fa-solid fa-user-plus  text-[0.9rem] lg:text-[1.1rem] ml-1"></i></button>
+                </section>
+                <!--//===  Unauthorized Section ===//-->
+                
+                <!-- Authorized Section -->
+                <section class="AuthSec  items-center gap-3 hidden">
+                    <section class="flex items-center gap-1 cursor-pointer">
+                        <section class="profileImage size-10 lg:size-11 rounded-full bg-dark cursor-pointer overflow-hidden">
+                            <img src="/public/images/banner3_1.png" alt="profileImage">
+                        </section>
+                        <span class="profileUserName font-semibold capitalize">user</span>
+                    </section>
+                    <button class="logout btn bg-main! text-soft! rounded-0 w-[6rem] h-13 text-sm! lg:w-30 lg:h-13  lg:text-lg! capitalize!">logout <i class="fa-solid fa-arrow-right-to-bracket text-[1.1rem] ml-1"></i></button>
+                 </section>
+                <!--//=== Authorized Section ===//-->
+
+
+                <!--//=== Authentication btns ===//-->
+            <!--//===  Nav Second Raw  ===//-->
+        </section>
+      </section>
+    </nav>
+    <!--//=== Nav Bar ===//-->
+
+
+    <!-- Main Checkout Content -->
+     <section class="checkout py-5">
+        <section class="secContainer flex flex-col-reverse items-center lg:flex-row lg:items-start gap-5">
+            
+            <!-- Order Summary -->
+            <section class="p-4 rounded-2xl flex-1  w-full lg:w-auto rounded-2xl overflow-hidden shadow-lg">
+                <h2 class="text-main! font-semibold! capitalize mb-3 text-2xl! my-0">order summary</h2>
+                <hr class="border-1 border-mainBg mb-3">
+                
+                <section id="cartItemsParent" class="all-items max-h-[30rem] overflow-auto">    
+
+                </section>
+                <section>
+                    <p class="capitalize font-medium text-secondaryPar text-lg flex justify-between"><span>subtotal :</span><span  class="font-black text-black text-xl">$<span id="subtotalAmount">0</span></span></p>
+                    <p class="capitalize font-medium text-secondaryPar text-lg flex justify-between"><span>shipping :</span><span class="font-black text-black text-xl"><span>$</span><span id="shippingAmount">20</span></span></p>
+                    <p class="capitalize font-medium text-secondaryPar text-lg flex justify-between"><span>total :</span><span class="font-black text-black text-xl">$<span id="totalAmount">20</span></span></p>
+                   <hr class="border-1 border-mainBg mb-3">
+                    <button id="placeOrderBtn" type="button" class="btn capitalize! rounded-0 bg-main! text-soft! border-main! hover:text-black! hover:bg-orange-400! px-3 text-md! duration-300 font-black! w-full">place order</button>
+                </section>
+            </section>
+            <!--//=== Order Summary ===//-->
+
+            <section class="flex-1 w-full lg:w-auto space-y-7 ">
+                <!-- Checkout Form -->
+                <form action="" method="get" class="checkoutForm rounded-2xl overflow-hidden shadow-lg w-full">
+                    <section class="bg-main text-white p-4">
+                        <h3 class="capitalize m-0 text-main font-bold text-2xl!">delivery address</h3>
+                    </section>
+                    
+                    <section class="p-4 space-y-5">
+                        <!--//=== Form Field ===//-->
+                        <section class="flex flex-col gap-2 ">
+                            <label class="text-secondaryPar font-semibold capitalize">name</label>
+                            <input type="text" name="name" placeholder="Enter your Name" class="w-full border-1 border-[#ddd] p-3 rounded-lg text-secondaryPar!">
+                            <span class="nameValidation validation font-medium capitalize"></span>
+                        </section>
+                        <!--//=== Form Field ===//-->
+
+                        <!--//=== Form Field ===//-->
+                        <section class="flex flex-col gap-2 ">
+                            <label class="text-secondaryPar font-semibold capitalize">email</label>
+                            <input type="Email" name="email" placeholder="Enter your email" class="w-full border-1 border-[#ddd] p-3 rounded-lg text-secondaryPar!">
+                            <span class="emailValidation validation font-medium capitalize"></span>
+                        </section>
+                        <!--//=== Form Field ===//-->
+
+                        <!--//=== Form Field ===//-->
+                        <section class="flex flex-col gap-2 ">
+                            <label class="text-secondaryPar font-semibold capitalize">address</label>
+                            <input type="text" name="address" placeholder="Enter your address" class="w-full border-1 border-[#ddd] p-3 rounded-lg text-secondaryPar!">
+                            <span class="addressValidation validation font-medium capitalize"></span>
+                        </section>
+                        <!--//=== Form Field ===//-->
+
+                        <!--//=== Form Field ===//-->
+                        <section class="flex flex-col gap-2 ">
+                            <label class="text-secondaryPar font-semibold capitalize">phone</label>
+                            <input type="text" name="phone" placeholder="Enter your phone like => : +code number" class="w-full border-1 border-[#ddd] p-3 rounded-lg text-secondaryPar!">
+                            <span class="phoneValidation validation font-medium capitalize"></span>
+                        </section>
+                        <!--//=== Form Field ===//-->
+                    </section>
+
+                </form>
+               <!--//=== Checkout Form ===//-->
+
+                <!-- Coupon Num -->
+                <section class="space-y-3 rounded-2xl overflow-hidden shadow-lg">
+                    <section class="bg-main text-white p-4">
+                        <h3 class="capitalize m-0 text-main font-bold text-2xl!">coupon code</h3>
+                    </section>
+                    <section class="p-4 space-y-5">
+                       <section class="flex flex-col items-start gap-2">
+                            <label class="text-secondaryPar font-semibold capitalize">coupon code</label>
+                            <input type="text" name="coupon" placeholder="Enter your coupon code" class="couponInpField w-full border-1 border-[#ddd] p-3 rounded-lg text-secondaryPar!">
+                       </section>
+
+                       <section class="text-center">
+                        <button id="applyCouponBtn" type="button" class="btn  capitalize! rounded-0 bg-main! text-soft! border-main! hover:text-black! hover:bg-orange-400! px-3 text-md! duration-300 font-black! w-[60%]">apply coupon</button>
+                       </section>
+                    </section>
+                </section>
+                <!-- Coupon Num -->
+            </section>
+        </section>
+    </section>
+    <!--//=== Main Checkout Content ===//-->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-black">
+        <section class="secContainer flex flex-col lg:flex-row items-center lg:items-start  gap-[3rem] lg:gap-[5rem]">
+            <!-- Box -->
+               <section class="flex flex-col gap-3 items-center lg:items-start">
+                    <section class="w-31 p-1 bg-soft rounded-4">   
+                        <img src="/public/images/mainLogo.png" alt="LogoImage" class="size-full">
+                    </section>
+                <p class="capitalize text-secondaryPar font-medium text-sm m-0">take your time and add to your cart what you need</p>
+                <section class="flex items-center gap-3">
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="" class="size-11 bg-main text-soft! flex items-center justify-center text-decoration-none hover:bg-main-hover transition-[background-color] duration-250">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </section>
+
+                </section>
+            <!--//=== Box ===//-->
+
+        <section class="flex flex-col lg:flex-row  justify-between flex-1 gap-3 lg:gap-5">
+
+            <!-- Box --> 
+
+            <section>
+                <h4 class="capitalize text-white font-semibold mb-3">find in fast</h4>
+                <ul class="footer-links list-unstyled">
+                    <a href="" class="capitalize text-white font-extralight text-decoration-none block mb-2 flex items-center gap-1 text-[0.8rem]"><li>laptops & computers</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>smart phones & tablets</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>TV & audio</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>appliances</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>jewelry & watches</li></a>
+                </ul>
+            </section>
+
+            <!--//=== Box ===//-->
+
+        
+            <!-- Box --> 
+            
+            <section class="">
+                <h4 class="capitalize text-white font-semibold mb-3">quick links</h4>
+                <ul class="footer-links list-unstyled">
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>your account</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>returns & exchanges</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>shipping & delivery</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>estimated delivery time</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>purchase history</li></a>
+                </ul>
+            </section>
+
+            <!--//=== Box ===//-->
+
+            <!-- Box --> 
+
+            <section class="">
+                <h4 class="capitalize text-white font-semibold mb-3">service us</h4>
+                <ul class="footer-links list-unstyled">
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>support center</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>term & conditions</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>privacy policy</li></a>
+                    <a href="" class="capitalize text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>help</li></a>
+                    <a href="" class="uppercase text-white  text-decoration-none block mb-2 flex items-center gap-1 font-extralight text-[0.8rem]"><li>faqs</li></a>
+                </ul>
+            </section>
+        </section>
+            <!--//=== Box ===//-->
+        </section>
+    </footer>
+    <!--//=== Footer ===//-->
+
+    <script src="/src/js/commonFunctions.js"></script>
+    <script src="/src/js/main.js" type="module"></script>
+    <script src="/node_modules/axios/dist/axios.min.js"></script> 
+    <script type="module" src="/src/js/checkout.js"></script>
+</body>
+</html>

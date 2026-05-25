@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+    .secContainer{
+        @apply w-full sm:max-w-[600px] md:max-w-[700px]  lg:max-w-[1000px]  xl:max-w-[1100px]  2xl:max-w-[1500px] mx-auto px-5 
+    }
+}
+
+
+@theme {
+  --color-main:#FF6B00;
+  --color-main-hover:#E65F00;
+  --color-soft:#FFF4EC;
+  --color-mainBg:#F5F5F5;
+  --color-cardBg:#FFFFFF;
+  --color-borderColor:#E5E7EB;
+  --color-secondaryPar:#6B7280;
+  --color-mainPar:#1F2937;
+}
+
+.activeSideBar{
+    transform:translateX(-300px);
+    -webkit-transform:translateX(-300px);
+    -moz-transform:translateX(-300px);
+    -ms-transform:translateX(-300px);
+    -o-transform:translateX(-300px);
+}
+
+input:focus{
+    color: #212529;
+    background-color: #fff !important; 
+    border-color:  #FFF4EC !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.22rem rgba(255, 106, 0, 0.216) !important;
+}
+a:active{
+      background-color:#FF6B00 !important; 
+      color:#FFF4EC;
+}
+
+.active{
+    background-color:#FF6B00 !important;
+    color:#FFF4EC;
+}
+.activeMain{
+        color:#FF6B00 !important;
+}
+button{
+    transition: 0.1s linear ;
+    -webkit-transition: 0.1s linear ;
+    -moz-transition: 0.1s linear ;
+    -ms-transition: 0.1s linear ;
+    -o-transition: 0.1s linear ;
+    transition-property: background-color , color;
+}
+button:hover{
+    background-color: #E65F00 !important;
+    color:white !important;
+}
+
+*.disActive{
+    pointer-events: none;
+    background-color:gray !important;
+    cursor: not-allowed;
+}
+
+.footer-links a::before{
+    content:"";
+    width:0px;
+    height:0px;
+    border:7px solid ;
+    border-color:transparent transparent transparent var(--color-main);
+}
+
+.activateAlert{
+    transform:translateY(0) !important;
+    -moz-transform:translateY(0) !important;
+    -ms-transform:translateY(0) !important;
+    -o-transform:translateY(0) !important;
+    -webkit-transform:translateY(0) !important;
+    opacity:1 !important;
+}
+
+.activeImage{
+    background-color:var(--color-mainBg);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px !important;
+}
+
+.activeLoveIcon{
+    color:white;
+    background-color:red !important;
+    border-color:white;
+}
+
+.activeCheckoutBanner{
+    visibility : visible !important;
+   opacity : 1 !important;
+}
+
+#wishListParent > *{
+    margin:0 !important;
+}
+#wishListParent > section{
+    width:100% !important;
+}
